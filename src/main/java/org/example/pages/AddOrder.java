@@ -84,14 +84,14 @@ public class AddOrder extends BasePage {
             username.click();
             Thread.sleep(2000);
             username.sendKeys("Selenium");
-
-            List<WebElement> options = SeleniumUtils.waitUntilVisibleAll(driver, "//ul[contains(@class,'MuiAutocomplete-listbox')]//li");
-            for (WebElement option : options) {
-                if (option.getText().equals("Selenium")) {
-                    option.click();
-                    break;
+            WebElement options = driver.findElement(By.xpath("//input[contains(@class,'MuiInputBase-input') and @aria-autocomplete='list']"));
+            //List<WebElement> options = SeleniumUtils.waitUntilVisibleAll(driver, "//ul[contains(@class,'MuiAutocomplete-listbox')]//li");
+            //for (WebElement option : option) {
+                if (options.getText().contains("Selenium")) {
+                    options.click();
+                    //break;
                 }
-            }
+            //}
         } catch (Exception e) {
             throw new RuntimeException("Failed to select user: " + e.getMessage(), e);
         }

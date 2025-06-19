@@ -6,6 +6,7 @@ import org.example.pages.Address;
 import org.example.pages.ProjectManagement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -24,6 +25,7 @@ public class ProjectMangementTest {
         driver.get("https://dev-new-commander.swageazy.com");
         addOrder.login();  // Assuming login is required before adding a product
     }
+
     @Test
     public void testPM() throws InterruptedException {
         PM.OpenProjectMgt();
@@ -32,4 +34,11 @@ public class ProjectMangementTest {
 
     }
 
+    @AfterTest
+    public void Quit() {
+        if (driver != null) {
+            driver.quit();
+        }
+
+    }
 }

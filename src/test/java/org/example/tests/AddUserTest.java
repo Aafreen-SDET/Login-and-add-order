@@ -8,6 +8,7 @@ import org.example.utils.SeleniumUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -34,5 +35,12 @@ public class AddUserTest {
 //        String confirmationText = SeleniumUtils.waitUntilVisible(driver, "//button[contains(text(),'Okay')]").getText();
 //        Assert.assertEquals(confirmationText, "Okay", "User added  confirmation text mismatch");
         System.out.println("User Added succesfully ");
+    }
+    @AfterTest
+    public void Quit() {
+        if (driver != null) {
+            driver.quit();
+        }
+
     }
 }

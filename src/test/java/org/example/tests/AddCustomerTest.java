@@ -7,6 +7,7 @@ import org.example.pages.AddOrder;
 import org.example.pages.AddUser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -35,5 +36,13 @@ public class AddCustomerTest   {
 //        Assert.assertEquals(confirmationText, "Okay", "User added  confirmation text mismatch");
             System.out.println("customer Added succesfully ");
         }
+
+    @AfterTest
+    public void Quit() {
+        if (driver != null) {
+            driver.quit();
+        }
+
+    }
     }
 
