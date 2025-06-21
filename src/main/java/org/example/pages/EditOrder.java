@@ -120,9 +120,9 @@ public class EditOrder extends BasePage {
         try {
             driver.get(BASE_URL + "/orders/add-orders?orderId=" + orderId);
             SeleniumUtils.scrollToBottom(driver);
-
+            driver.findElement(By.xpath("//button[contains(text(),'View Products')]")).click();
             List<WebElement> actionButtons = driver.findElements(By.xpath(
-                    "(//div[contains(@class,'css-10dzex5')]//following-sibling::div[contains(@class,'css-bfcu2c')])[3]//child::div[contains(@class,' css-1v0er6g')]"));
+                    "(//div[contains(@class,'css-10dzex5')])[7]//div[contains(@class,'css-9vd5ud')]//button"));
 
             for (WebElement pencilIcon : actionButtons) {
                 pencilIcon.click();

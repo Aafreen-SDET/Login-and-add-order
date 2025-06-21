@@ -3,6 +3,7 @@ package org.example.pages;
 import org.example.Base.BasePage;
 import org.example.utils.SeleniumUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,8 +35,6 @@ public class AddOrder extends BasePage {
         super(driver);
     }
 
-
-
     public void login() {
         try {
             SeleniumUtils.waitAndSendKeys(driver, "//input[contains(@class,'css-1pk1fka')]", EMAIL);
@@ -43,7 +42,7 @@ public class AddOrder extends BasePage {
             SeleniumUtils.waitAndClick(driver, "//button[contains(@class,'css-1m5l81m')]");
             Thread.sleep(2000);
 //            new WebDriverWait(driver, Duration.ofSeconds(10))
-//                    .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='dashboard']")));
+//                until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='dashboard']")));
 
             System.out.println("Login successful and dashboard loaded");
         } catch (Exception e) {
@@ -59,43 +58,51 @@ public class AddOrder extends BasePage {
             driver.navigate().refresh();
             SeleniumUtils.waitAndClick(driver, "//button[normalize-space()='Add Order']");
 
+            // Type input and wait
             WebElement inputField = SeleniumUtils.waitUntilVisible(driver, "//input[@type='text' and contains(@class, 'MuiInputBase-input')]");
             inputField.sendKeys("RRest Assured");
 
-            List<WebElement> options = SeleniumUtils.waitUntilVisibleAll(driver, "//ul[contains(@class, 'MuiAutocomplete-listbox')]//li");
+            // Wait until dropdown is visible
+            List<WebElement> options = SeleniumUtils.waitUntilVisibleAll(driver, "//li[contains(@id,'-option-')]");
+
+            // Optional: add a short pause to allow UI to render completely
+            Thread.sleep(1000);
+
+            if (!options.isEmpty()) {
+                inputField.sendKeys(Keys.ARROW_DOWN);
+                inputField.sendKeys(Keys.ENTER);
+            } else {
+                throw new RuntimeException("No autocomplete options appeared.");
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    public void selectUser() {
+        try {
+            WebElement userInput = SeleniumUtils.waitUntilVisible(driver, "//label[contains(text(),'Select user')]//following-sibling::div//child::input");
+            userInput.click();
+            userInput.sendKeys("Selenium");
+
+            // Wait for dropdown options to appear
+            List<WebElement> options = new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//ul[contains(@class,'MuiAutocomplete-listbox')]/li")));
+
             for (WebElement option : options) {
-                if (option.getText().equals("Rest Assured")) {
+                if (option.getText().contains("Selenium")) {
                     option.click();
                     break;
                 }
             }
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to add order: " + e.getMessage(), e);
-        }
-    }
 
-
-
-
-
-    public  void selectUser() {
-        try {
-            WebElement username = SeleniumUtils.waitUntilVisible(driver, "//label[contains(text(),'Select user')]//following-sibling::div//child::input");
-            username.click();
-            Thread.sleep(2000);
-            username.sendKeys("Selenium");
-            WebElement options = driver.findElement(By.xpath("//input[contains(@class,'MuiInputBase-input') and @aria-autocomplete='list']"));
-            //List<WebElement> options = SeleniumUtils.waitUntilVisibleAll(driver, "//ul[contains(@class,'MuiAutocomplete-listbox')]//li");
-            //for (WebElement option : option) {
-                if (options.getText().contains("Selenium")) {
-                    options.click();
-                    //break;
-                }
-            //}
         } catch (Exception e) {
             throw new RuntimeException("Failed to select user: " + e.getMessage(), e);
         }
     }
+
 
     public  void selectAddress() {
         try {

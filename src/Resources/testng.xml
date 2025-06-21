@@ -4,16 +4,16 @@
         <classes>
 
             <class name="org.example.tests.AddOrderTest"/>
-<!--            <class name="org.example.tests.EditOrderTest"/>-->
-<!--            <class name="org.example.tests.TestAddProduct"/>-->
-<!--            <class name="org.example.tests.LoginTest"/>-->
-<!--            <class name="org.example.tests.AddVendorTest"/>-->
-<!--            <class name="org.example.tests.AddUserTest"/>-->
-<!--            <class name="org.example.tests.AddCustomerTest"/>-->
-<!--            <class name="org.example.tests.EmployessTest"/>-->
-<!--            <class name="org.example.tests.TaskTrackerTest"/>-->
-<!--            <class name="org.example.tests.TestAddress"/>-->
-<!--            <class name="org.example.tests.ProjectMangementTest"/>-->
+            <class name="org.example.tests.EditOrderTest"/>
+            <class name="org.example.tests.TestAddProduct"/>
+            <class name="org.example.tests.LoginTest"/>
+            <class name="org.example.tests.AddVendorTest"/>
+            <class name="org.example.tests.AddUserTest"/>
+            <class name="org.example.tests.AddCustomerTest"/>
+            <class name="org.example.tests.EmployessTest"/>
+            <class name="org.example.tests.TaskTrackerTest"/>
+            <class name="org.example.tests.TestAddress"/>
+            <class name="org.example.tests.ProjectMangementTest"/>
 
         </classes>
     </test>
