@@ -20,14 +20,17 @@ public class BaseTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
-        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--disable-blink-features=AutomationControlled");
 
-        // Use headless mode only if running in CI/CD
-        if (System.getenv("CI") != null) {
-            options.addArguments("--headless=new");
-        }
+// ✅ Optional: remove headless if still debugging
+        options.addArguments("--headless=new");
 
         driver = new ChromeDriver(options);
+
+
+
+        //driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get("https://dev-new-commander.swageazy.com/");
