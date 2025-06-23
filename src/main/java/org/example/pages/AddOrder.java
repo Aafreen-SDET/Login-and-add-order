@@ -1,14 +1,13 @@
 package org.example.pages;
 
+import org.apache.commons.io.FileUtils;
 import org.example.Base.BasePage;
 import org.example.utils.SeleniumUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.List;
@@ -88,7 +87,7 @@ public class AddOrder extends BasePage {
             userInput.sendKeys("Selenium");
 
             // Wait for dropdown options to appear
-            List<WebElement> options = new WebDriverWait(driver, Duration.ofSeconds(5))
+            List<WebElement> options = new WebDriverWait(driver, Duration.ofSeconds(20))
                     .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//ul[contains(@class,'MuiAutocomplete-listbox')]/li")));
 
             for (WebElement option : options) {
@@ -102,6 +101,8 @@ public class AddOrder extends BasePage {
             throw new RuntimeException("Failed to select user: " + e.getMessage(), e);
         }
     }
+//    File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//FileUtils.copyFile(scrFile, new File("screen-before-dropdown.png"));
 
 
     public  void selectAddress() {
