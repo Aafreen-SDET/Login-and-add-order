@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
@@ -84,6 +85,9 @@ public class AddOrder extends BasePage {
         try {
             WebElement userInput = SeleniumUtils.waitUntilVisible(driver, "//label[contains(text(),'Select user')]//following-sibling::div//child::input");
             userInput.click();
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.elementToBeClickable(userInput));
+
             userInput.sendKeys("Selenium");
 
             // Wait for dropdown options to appear
@@ -97,9 +101,16 @@ public class AddOrder extends BasePage {
                 }
             }
 
-        } catch (Exception e) {
+        }catch (Exception e) {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(scrFile, new File("dropdown-error.png"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
             throw new RuntimeException("Failed to select user: " + e.getMessage(), e);
         }
+
     }
 //    File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 //FileUtils.copyFile(scrFile, new File("screen-before-dropdown.png"));
