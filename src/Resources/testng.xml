@@ -3,9 +3,9 @@
     <test name="OrderTests">
         <classes>
 
-            <class name="org.example.tests.AddOrderTest"/>
+<!--            <class name="org.example.tests.AddOrderTest"/>-->
 <!--            <class name="org.example.tests.EditOrderTest"/>-->
-<!--            <class name="org.example.tests.TestAddProduct"/>-->
+            <class name="org.example.tests.TestAddProduct"/>
 <!--            <class name="org.example.tests.LoginTest"/>-->
 <!--            <class name="org.example.tests.AddVendorTest"/>-->
 <!--            <class name="org.example.tests.AddUserTest"/>-->
