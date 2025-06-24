@@ -21,8 +21,13 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Verify Chrome version
-        run: google-chrome --version
+      - name: Install ChromeDriver 137 to match preinstalled Chrome
+        run: |
+          wget -q https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/137.0.7151.103/linux64/chromedriver-linux64.zip
+          unzip chromedriver-linux64.zip
+          sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
+          chmod +x /usr/local/bin/chromedriver
+          chromedriver --version
 
       - name: Run Tests with Maven
         run: mvn clean test -DsuiteXmlFile=src/resources/testng.xml
