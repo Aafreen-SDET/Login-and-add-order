@@ -17,11 +17,15 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments(
+                "--headless=new",
+                "--disable-gpu",
+                "--window-size=1920,1080",
+                "--disable-dev-shm-usage",
+                "--no-sandbox",
+                "--remote-debugging-port=9222"
+        );
+
 
 // ✅ Optional: remove headless if still debugging
         options.addArguments("--headless=new");
