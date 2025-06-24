@@ -18,19 +18,20 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
+        options.setBinary("/usr/bin/google-chrome"); // ✅ explicitly set path to Chrome binary
+
         options.addArguments(
-                "--headless=new", // headless mode for GitHub Actions
+                "--headless=new",
                 "--disable-gpu",
                 "--window-size=1920,1080",
                 "--disable-dev-shm-usage",
                 "--no-sandbox",
-                "--remote-debugging-port=9222",
-                "--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis() // ✅ critical fix for session error
+                "--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis()
         );
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.manage().window().setSize(new Dimension(1920, 1080)); // makes sure dropdowns render correctly
+        driver.manage().window().setSize(new Dimension(1920, 1080));
         driver.get("https://dev-new-commander.swageazy.com/");
     }
 
