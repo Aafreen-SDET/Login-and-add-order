@@ -21,17 +21,8 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Remove default Chrome and install Chrome 123
-        run: |
-          sudo apt-get remove google-chrome-stable -y || true
-          wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_123.0.6312.86-1_amd64.deb
-          sudo dpkg -i google-chrome-stable_123.0.6312.86-1_amd64.deb || sudo apt-get -f install -y
-
       - name: Verify Chrome version
         run: google-chrome --version
 
       - name: Run Tests with Maven
         run: mvn clean test -DsuiteXmlFile=src/resources/testng.xml
-
-
-
