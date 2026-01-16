@@ -34,13 +34,13 @@ public class TaskTracker extends BasePage {
          SeleniumUtils.waitAndSendKeys(driver,"(//input[contains(@class,'css-s43tfo') and (@type ='text')])[1]","Aaaf");
          SeleniumUtils.waitAndClick(driver,"//*[starts-with(@id,':') and contains(@id,'option-0')]");
          //SeleniumUtils.waitAndClick(driver,"//span[contains(text(),'To Do')]");
-         SeleniumUtils.waitAndSendKeys(driver,"(//input[contains(@class,'css-s43tfo') and (@type ='text')])[1]","20206");
+         SeleniumUtils.waitAndSendKeys(driver,"(//input[contains(@class,'css-s43tfo') and (@type ='text')])[1]","02027");
          SeleniumUtils.waitAndClick(driver,"//*[starts-with(@id,':') and contains(@id,'option-0')]");
          SeleniumUtils.waitAndClick(driver,"//input[@id  ='due_date']");
          SeleniumUtils.waitAndClick(driver,"//label[contains(text(),'Select priority *')]//following-sibling::div//child::div");
          SeleniumUtils.waitAndClick(driver,"//span[contains(text(),'HIGH')]");
          SeleniumUtils.scrollToBottom(driver);
-         SeleniumUtils.waitAndSendKeys(driver,"//textarea[contains(@id,'description')]","abaa dabba jabba");
+         SeleniumUtils.waitAndSendKeys(driver,"//div[contains(@class,'ql-container ql-snow')]//div","abaa dabba jabba");
          SeleniumUtils.waitAndClick(driver,"//button[contains(text(),'Create Task')]");
          SeleniumUtils.waitAndClick(driver,"//button[contains(text(),'Okay')]");
 

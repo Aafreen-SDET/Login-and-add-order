@@ -24,7 +24,7 @@ public class TaskTrackerTest {
         driver.manage().window().maximize();
         TaskTracker  = new TaskTracker(driver);
         addOrder = new AddOrder(driver);
-        driver.get("https://dev-new-commander.swageazy.com");
+        driver.get("https://stage-new-commander.swageazy.com");
         addOrder.login();  // Assuming login is required before adding a product
     }
 

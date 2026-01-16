@@ -32,10 +32,8 @@ public class AddCustomer extends BasePage {
             SeleniumUtils.waitAndClick(driver,"//span[contains(text(),'Add Customer')]");
              String Customer = "Amisha";
              SeleniumUtils.waitAndSendKeys(driver,"//label[contains(text(),'Name')]//following-sibling::div//input",Customer);
-             SeleniumUtils.waitAndClick(driver,"//label[contains(text(),'Coupon Redemption')]//parent::div");
-             SeleniumUtils.waitAndClick(driver,"//span[contains(text(),'True')]"); ////span[contains(text(),'True')]//parent::div[contains(@class,'css-18zb7o8')]
-             SeleniumUtils.waitAndClick(driver,"//label[contains(text(),'Email Redemption')]//parent::div");
-              SeleniumUtils.waitAndClick(driver,"(//div[contains(@class,'css-d1xm6m')])[3]//ul//li[2]");
+             SeleniumUtils.waitAndClick(driver,"//label[contains(text(),'Coupon Redemption')]//parent::div");SeleniumUtils.waitAndClick(driver,"//span[contains(text(),'True')]"); ////span[contains(text(),'True')]//parent::div[contains(@class,'css-18zb7o8')]
+            SeleniumUtils.waitAndClick(driver,"//label[contains(text(),'Email Redemption')]//parent::div");SeleniumUtils.waitAndClick(driver,"(//div[contains(@class,'css-d1xm6m')])[3]//ul//li[2]");
             SeleniumUtils.waitAndClick(driver,"//label[contains(text(),'Inventory')]//parent::div");
             SeleniumUtils.waitAndClick(driver,"(//div[contains(@class,'css-d1xm6m')])[3]//ul//li[2]");
             SeleniumUtils.waitAndClick(driver,"//label[contains(text(),'GOC')]//parent::div");

@@ -23,24 +23,26 @@ public class TestAddProduct {
         driver.manage().window().maximize();
         addProduct = new AddProduct(driver);
         addOrder = new AddOrder(driver);
-        driver.get("https://dev-new-commander.swageazy.com");
+        driver.get("https://stage-new-commander.swageazy.com");
         addOrder.login();  // Assuming login is required before adding a product
     }
 
     @Test
     public void testAddProduct() throws InterruptedException {
-        addProduct.addProducts();
+        addProduct.Addproductnew();
+        //addProduct.addProducts();
         SeleniumUtils.waitForBackdropToDisappear(driver);
         String confirmationText = SeleniumUtils.waitUntilVisible(driver, "//button[contains(text(),'Okay')]").getText();
         Assert.assertEquals(confirmationText, "Okay", "Product creation confirmation text mismatch");
         System.out.println("Product successfully added");
+
     }
 
-    @AfterClass
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+//    @AfterClass
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
 }
 

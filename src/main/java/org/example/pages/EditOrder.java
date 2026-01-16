@@ -36,6 +36,7 @@ public class EditOrder extends BasePage {
         super(driver);
     }
 
+
     public void raiseStockCheckRequest(String orderId) {
         try {
             driver.get(BASE_URL + "/orders/add-orders?orderId=" + orderId);
@@ -74,19 +75,19 @@ public class EditOrder extends BasePage {
             SeleniumUtils.waitAndClick(driver, "//button[text()='26']");
             SeleniumUtils.waitAndClick(driver, "//div[contains(@class, 'css-12k1dgj')][1]");
 
-            selectDropdownOption("(//div[@role='combobox'])[3]", "No");
-            selectDropdownOption("(//div[@role='combobox'])[4]", "Approved");
-            driver.findElement(By.xpath("(//div[@role='combobox'])[5]")).click();             // click on DIY redemption
-        driver.findElement(By.xpath("(//span[normalize-space()='No'])[2]")).click();           //click on NO
+            selectDropdownOption("//label[contains(text(),'Is the delivery time flexible')]/parent::div", "No");
+            selectDropdownOption("//label[contains(text(),'Mockup Status*')]/parent::div", "Approved"); // mockuop status
+            driver.findElement(By.xpath("//label[contains(text(),'DIY Redemption*')]/parent::div")).click();             // click on DIY redemption
+            driver.findElement(By.xpath("(//span[normalize-space()='No'])[2]")).click();           //click on NO
            // selectDropdownOption("(//div[@role='combobox'])[5]", "No");
             //
             // Click on order type
-            driver.findElement(By.xpath("(//div[contains(@class, 'css-1dzbalk')])[2]")).click();
-            waitForBackdropToDisappear(driver);
-            driver.findElement(By.xpath("//*[starts-with(@id,':') and contains(@id,'option-2')]")).click();
+//            driver.findElement(By.xpath("(//div[contains(@class, 'css-1dzbalk')])[2]")).click();
+//            waitForBackdropToDisappear(driver);
+//            driver.findElement(By.xpath("//*[starts-with(@id,':') and contains(@id,'option-2')]")).click();
 
 // Type of shipping
-            driver.findElement(By.xpath("(//div[contains(@class, 'css-1dzbalk')])[2]")).click();
+            driver.findElement(By.xpath("//label[contains(text(),'Type Of Shipping')]/parent::div")).click();
             waitForBackdropToDisappear(driver);
             driver.findElement(By.xpath("//*[starts-with(@id,':') and contains(@id,'option-0')]")).click();
 
@@ -104,13 +105,14 @@ public class EditOrder extends BasePage {
 
             //
             Thread.sleep(2000);
-            SeleniumUtils.waitAndSendKeys(driver, "//input[contains(@id, 'products_colors')]", "na");
-            SeleniumUtils.waitAndSendKeys(driver, "//input[contains(@id, 'link')]", "na");
-            SeleniumUtils.waitAndSendKeys(driver, "//input[contains(@id, 'packing_instructions')]", "na");
-            SeleniumUtils.waitAndSendKeys(driver, "//textarea[contains(@id, 'products_additional_info')]", "NA");
+//            SeleniumUtils.waitAndSendKeys(driver, "//input[contains(@id, 'products_colors')]", "na");
+//            SeleniumUtils.waitAndSendKeys(driver, "//input[contains(@id, 'link')]", "na");
+//            SeleniumUtils.waitAndSendKeys(driver, "//input[contains(@id, 'packing_instructions')]", "na");
+//            SeleniumUtils.waitAndSendKeys(driver, "//textarea[contains(@id, 'products_additional_info')]", "NA");
             SeleniumUtils.waitAndSendKeys(driver, "//textarea[contains(@id, 'order_additional_info')]", "NA");
 
             SeleniumUtils.waitAndClick(driver, "//button[contains(text(),'Submit')]");
+            System.out.println("project created succesfully ");
         } catch (Exception e) {
             throw new RuntimeException("Failed to raise project request: " + e.getMessage(), e);
         }
@@ -128,25 +130,30 @@ public class EditOrder extends BasePage {
                 pencilIcon.click();
                 SeleniumUtils.waitAndClick(driver, "//div[contains(@class,'css-mp9f0v')]//child::span[contains(@class,'css-mslaax')]");
                  driver.findElement(By.xpath("//span[contains(text(),'Yes')]")).click(); // click on yes
-                WebElement stockQtyField = SeleniumUtils.waitUntilVisible(driver, "(//input[contains(@class,'css-15v65c')])[4]");
-                WebElement vendorName = SeleniumUtils.waitUntilVisible(driver, "(//input[contains(@class,'css-15v65c')])[2]");
-                WebElement timelineField = SeleniumUtils.waitUntilVisible(driver, "(//input[contains(@class,'css-15v65c')])[3]");
+                WebElement stockQtyField = SeleniumUtils.waitUntilVisible(driver, "//div[contains(text(),'Stock Quantity')]//following-sibling::div//child::div//input");
+                WebElement vendorName = SeleniumUtils.waitUntilVisible(driver, "//label[contains(text(),'Vendor')]//following-sibling::div//child::input");
+                WebElement timelineField = SeleniumUtils.waitUntilVisible(driver, "//label[contains(text(),'Timeline')]//following-sibling::div//child::input");
+
                 WebElement saveButton = SeleniumUtils.waitUntilVisible(driver, "//button[text()='Confirm']");
 
                 stockQtyField.clear();
                 Thread.sleep(2000);
                 stockQtyField.sendKeys("100");
                 wait.until(ExpectedConditions.elementToBeClickable(vendorName));
-                vendorName.clear();
-                vendorName.sendKeys("Arhaan");
+               // vendorName.clear();
+                System.out.println("done");
+                vendorName.click();
+                vendorName.sendKeys("Surya");
+                SeleniumUtils.waitAndClick(driver, "//*[starts-with(@id,':') and contains(@id,'option-0')]");
                 timelineField.clear();
                 timelineField.sendKeys("3");
 
                 saveButton.click();
                 new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOf(saveButton));
             }
-
-            selectDropdownOption("(//div[contains(@class,'css-j729ga')])[2]", "Closed");
+            SeleniumUtils.waitAndClick(driver,"//div[contains(@class,'css-j729ga')]//div//div//span[contains(text(),'Open')]");
+            SeleniumUtils.waitAndClick(driver,"//span[contains(text(),'Closed')]");
+            //selectDropdownOption("(//div[contains(@class,'css-j729ga')])[2]", "Closed");
             SeleniumUtils.waitAndClick(driver, "(//button[contains(text(),'Save')])[2]");
 
             ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, -300);");

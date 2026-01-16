@@ -60,7 +60,7 @@ public class AddOrder extends BasePage {
 
             // Type input and wait
             WebElement inputField = SeleniumUtils.waitUntilVisible(driver, "//input[@type='text' and contains(@class, 'MuiInputBase-input')]");
-            inputField.sendKeys("RRest Assured");
+            inputField.sendKeys("AAafreen zee");
 
             // Wait until dropdown is visible
             List<WebElement> options = SeleniumUtils.waitUntilVisibleAll(driver, "//li[contains(@id,'-option-')]");
@@ -88,14 +88,14 @@ public class AddOrder extends BasePage {
             new WebDriverWait(driver, Duration.ofSeconds(10))
                     .until(ExpectedConditions.elementToBeClickable(userInput));
 
-            userInput.sendKeys("Selenium");
+            userInput.sendKeys("grace");
 
             // Wait for dropdown options to appear
             List<WebElement> options = new WebDriverWait(driver, Duration.ofSeconds(20))
                     .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//ul[contains(@class,'MuiAutocomplete-listbox')]/li")));
 
             for (WebElement option : options) {
-                if (option.getText().contains("Selenium")) {
+                if (option.getText().contains("grace")) {
                     option.click();
                     break;
                 }
@@ -121,9 +121,13 @@ public class AddOrder extends BasePage {
             SeleniumUtils.waitAndClick(driver, "(//button[normalize-space()='Select'])[1]");
             SeleniumUtils.waitAndClick(driver, "(//div[contains(@class,'css-j3317l')])[2]");
             SeleniumUtils.waitAndClick(driver, "(//button[normalize-space()='Done'])[1]");
-            SeleniumUtils.waitAndClick(driver, "(//button[contains(@class,'css-2pn8vf')])[2]");
+            SeleniumUtils.waitAndClick(driver, "(//button[contains(@class,'css-1jndn38')])[2]"); // select shipping adddress
+
             SeleniumUtils.waitAndClick(driver, "(//div[contains(@class,'css-j3317l')])[1]");
             SeleniumUtils.waitAndClick(driver, "(//button[normalize-space()='Done'])[1]");
+            SeleniumUtils.waitAndSendKeys(driver,"(//input[contains(@class,'css-1pk1fka')])[1]","Automated order ");
+            SeleniumUtils.waitAndClick(driver,"(//div[contains(text(),'Order Type *')])[1]//following-sibling::div");;
+            SeleniumUtils.waitAndClick(driver,"(//span[contains(text(),'Normal')])[1]");
         } catch (Exception e) {
             throw new RuntimeException("Failed to select address: " + e.getMessage(), e);
         }
@@ -131,7 +135,7 @@ public class AddOrder extends BasePage {
 
     public  void addProducts() {
         try {
-            String[] productNames = {"adidas", "Mail", "insert"};
+            String[] productNames = {"adidas", "Mail", "insert","Water Bottle gst%"};
             for (String product : productNames) {
                 SeleniumUtils.waitAndClick(driver, "(//button[normalize-space()='Add Products'])[1]");
                 WebElement search = SeleniumUtils.waitUntilVisible(driver, "//input[@placeholder='Search...']");
@@ -155,7 +159,7 @@ public class AddOrder extends BasePage {
             qtyInput.click();
             qtyInput.sendKeys("20");
 
-            SeleniumUtils.waitAndClick(driver, "//button[normalize-space()='Submit']");
+            SeleniumUtils.waitAndClick(driver, "//button[normalize-space()='Update']");
             SeleniumUtils.waitAndClick(driver, "//button[normalize-space()='Create Order']");
 
             WebElement confirmation = SeleniumUtils.waitUntilVisible(driver, "//div[contains(text(),'Order Details -')]");
